@@ -34,6 +34,7 @@ Axios.interceptors.response.use(
         catch {
             console.log("CAN'T REACH SERVER")
             console.log(serverUrl)
+            console.log(import.meta.env.VITE_IS_PROD)
             return Promise.reject(error)
         }
     }

@@ -4,16 +4,16 @@ import path from "path"
 import fs from 'fs'
 import dotenv from 'dotenv'; 
 //dotenv.config({ path: '../.env' });  // global file
-dotenv.config({ path: '/.env' });  // Load environment variables from .env file
+dotenv.config({ path: '.env' });  // Load environment variables from .env file
 
 export default defineConfig({
 
   envDir: '\'', //'../', for global
   preview: { // FOR PRODUCTION
-    port: Number(process.env.FRONTEND_PORT),
+    port: Number(process.env.VITE_FRONTEND_PORT),
   },
   server: { // FOR DEV
-    port : Number(process.env.FRONTEND_PORT),
+    port : Number(process.env.VITE_FRONTEND_PORT),
     https: {
       key: fs.readFileSync('./.cert/key.pem'),
       cert: fs.readFileSync('./.cert/cert.pem'),
