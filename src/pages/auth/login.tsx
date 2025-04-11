@@ -45,7 +45,7 @@ export default function Login() {
         accountService.saveToken(res.data.access_token)
         navigate("/dashboard/home", { replace: true })
       })
-      .catch((e: any) => {
+      .catch(() => {
         //console.log(e)
         setSubmitState("error")
       })
