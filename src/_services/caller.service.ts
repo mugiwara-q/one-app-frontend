@@ -2,7 +2,6 @@ import axios from "axios"
 import { accountService } from "./account.service"
 
 /***************** SET AXIOS BACKEND ROUTE *****************/
-//const a = import.meta.env.BACKEND_PORT
 
 const Axios = axios.create({
     baseURL: import.meta.env.VITE_IS_PROD == "true" ? import.meta.env.VITE_API_SUBDOMAIN // PROD
@@ -22,7 +21,7 @@ Axios.interceptors.response.use(
         return response || null
     },
     error => {
-        if (error.response.status != undefined) {
+        try { //(error.response.status != undefined) {
             if (error.response.status === 401) {
                 accountService.logout() // remove token
                 window.location.href = "/auth/login"
@@ -30,7 +29,7 @@ Axios.interceptors.response.use(
                 return Promise.reject(error)
             }
         }
-        else {
+        catch {
             console.log("CAN'T REACH SERVER")
         }
     }
