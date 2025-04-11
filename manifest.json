@@ -1,0 +1,16 @@
+{
+  "name": "ONEAPP v2",
+  "short_name": "ONEAPP v2",
+  "start_url": "/",
+  "theme_color": "#2f1937",
+  "background_color": "#ffffff",
+  "display": "standalone",
+
+  "icons": [
+    {
+      "src": "/src/assets/icons/icon.png",
+      "sizes": "192X192 144X144 64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    }
+  ]
+}
