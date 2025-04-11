@@ -46,7 +46,7 @@ export default function Login() {
         navigate("/dashboard/home", { replace: true })
       })
       .catch((e: any) => {
-        console.log(e)
+        //console.log(e)
         setSubmitState("error")
       })
   }
@@ -67,7 +67,7 @@ export default function Login() {
         return (<>
           <Button variant="destructive" className="flex items-center text-center w-full">
             <CircleX className="mr-2 h-4 w-4" />
-            Erreur de la base de données !
+            Erreur du serveur !
           </Button>
         </>)
 
@@ -75,7 +75,7 @@ export default function Login() {
         return (<>
           <Button variant="destructive" className="flex items-center text-center w-full">
             <CircleX className="mr-2 h-4 w-4" />
-            Mauvais email ou mot de passe !
+            Email ou mot de passe erroné !
           </Button>
         </>)
 

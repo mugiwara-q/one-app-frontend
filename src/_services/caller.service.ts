@@ -3,9 +3,11 @@ import { accountService } from "./account.service"
 
 /***************** SET AXIOS BACKEND ROUTE *****************/
 
+const serverUrl = import.meta.env.VITE_IS_PROD == "true" ? import.meta.env.VITE_API_SUBDOMAIN // PROD
+    : "http://localhost:" + import.meta.env.VITE_BACKEND_PORT // DEV
+
 const Axios = axios.create({
-    baseURL: import.meta.env.VITE_IS_PROD == "true" ? import.meta.env.VITE_API_SUBDOMAIN // PROD
-        : "http://localhost:" + import.meta.env.VITE_BACKEND_PORT, // DEV
+    baseURL: serverUrl
 })
 
 /***************** INTERCEPT TOKEN *****************/
@@ -31,6 +33,8 @@ Axios.interceptors.response.use(
         }
         catch {
             console.log("CAN'T REACH SERVER")
+            console.log(serverUrl)
+            return Promise.reject(error)
         }
     }
 )
