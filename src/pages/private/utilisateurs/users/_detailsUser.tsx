@@ -447,7 +447,7 @@ export default function DetailsUser() {
                         {(id === null || isNaN(parseInt(id))) ?
                             <>
                                 <Button type="submit" className="flex flex-col w-2/3 items-center gap-1 text-center">Ajouter l'utilisateur</Button>
-                                <Button variant="destructive" onClick={() => cancelLink()} className="flex flex-col ml-5 py-4 items-center text-center w-1/3 "> Annuler </Button>
+                                <Button variant="destructive" onClick={() => cancelLink()} className="flex flex-col ml-5 py-4 items-center text-center w-1/3 "> {submitState == "done" ? "Retour" : "Annuler"} </Button>
                             </> :
                             <>
                                 <Button type="submit" className="flex flex-col w-2/3 items-center gap-1 text-center">Enregistrer les modifications</Button>

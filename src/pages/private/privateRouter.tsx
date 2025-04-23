@@ -45,7 +45,7 @@ const PrivateRouter = () => {
                 {/* NATIVE ACCESS */}
                 <Route path="error" element={<Error />} />
                 <Route path="home" element={<Dashboard />} />
-                <Route path="horaires" element={<RoleGuard page="horaires"><Horaires /></RoleGuard>} />
+                <Route path="horaires" element={<Horaires />} />
                 <Route path="reglages" element={<Reglages />} />
                 <Route path="panier" element={<Panier />} />
 

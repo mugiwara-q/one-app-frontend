@@ -52,7 +52,7 @@ const MENU: Array<menuDataItem> = [
   { name: "Réglages", link: "reglages", icon: <Settings className="h-4 w-4" /> }
 ]
 
-const NATIVE_ACCESS = ["home", "horaires", "reglages"]
+const NATIVE_ACCESS = ["home", "horaires", "panier", "reglages"]
 
 export default function NavMenu({ isMobile }: { isMobile: boolean }) {
 

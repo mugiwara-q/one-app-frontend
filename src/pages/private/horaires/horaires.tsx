@@ -2,18 +2,29 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "@ui/input-otp"
 import { Button } from "@ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@ui/table"
 import { useState } from "react"
+import { getMonthFromNumber, getWeekNumber, getWeekStart, getWeekEnd } from "@/_utils/helpers"
+import {
+  ChevronLeft,
+  ChevronRight
+} from "lucide-react"
 //import { Input } from "@/components/ui/input"
 
 export default function Contacts() {
 
+  const [weekStartView, setWeekStartView] = useState(getWeekStart(new Date()))
+
+  function dayPlus(day: Date, plus: number) {
+    return new Date(weekStartView.getFullYear(), weekStartView.getMonth(), day.getDate() + plus)
+  }
+
   const DAYS: Array<string> = [
-    "LUNDI",
-    "MARDI",
-    "MERCREDI",
-    "JEUDI",
-    "VENDREDI",
-    "SAMEDI",
-    "DIMANCHE"
+    "LUNDI " + weekStartView.toLocaleDateString("fr-FR"),
+    "MARDI " + dayPlus(weekStartView, 1).toLocaleDateString("fr-FR"),
+    "MERCREDI " + dayPlus(weekStartView, 2).toLocaleDateString("fr-FR"),
+    "JEUDI " + dayPlus(weekStartView, 3).toLocaleDateString("fr-FR"),
+    "VENDREDI " + dayPlus(weekStartView, 4).toLocaleDateString("fr-FR"),
+    "SAMEDI " + dayPlus(weekStartView, 5).toLocaleDateString("fr-FR"),
+    "DIMANCHE " + dayPlus(weekStartView, 6).toLocaleDateString("fr-FR")
   ]
 
   const [days, setDays] = useState({
@@ -120,12 +131,31 @@ export default function Contacts() {
         <h1 className="font-semibold text-2xl">FEUILLE D'HEURES</h1>
       </div>
 
-      <div className="text-2xl border rounded-lg border-dashed shadow-sm text-center p-4">
-        SEMAINE 12 - SEPETEMBRE 2024
-        <p className="text-sm text-muted-foreground">
-          Du 10 au 17 septembre
-        </p>
+      <div className="flex items-center">
+
+        <div className="flex flex-col w-1/6 items-w-1/6 gap-1 text-w-1/6">
+          <Button onClick={() => setWeekStartView(new Date(weekStartView.getFullYear(), weekStartView.getMonth(), weekStartView.getDate() - 7))}>
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="flex flex-col w-4/6 items-w-4/6 gap-1 text-w-4/6 w-full items-center">
+          Semaine {getWeekNumber(weekStartView)} - {getMonthFromNumber(weekStartView.getMonth())} {weekStartView.getFullYear()}
+          <p className="text-sm text-muted-foreground">
+            Du {getWeekStart(weekStartView).getDate()} {getMonthFromNumber(getWeekStart(weekStartView).getMonth())} au {getWeekEnd(weekStartView).getDate()} {getMonthFromNumber(getWeekEnd(weekStartView).getMonth())}
+          </p>
+        </div>
+
+        <div className="flex flex-col w-1/6 items-w-1/6 gap-1 text-w-1/6">
+          <Button onClick={() => setWeekStartView(new Date(weekStartView.getFullYear(), weekStartView.getMonth(), weekStartView.getDate() + 7))}>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+
       </div>
+
+
+
 
       <div className="flex flex-col center-items text-center overflow-auto">
         <Table>
@@ -151,9 +181,6 @@ export default function Contacts() {
         <br />
         <Button> Valider cette semaine </Button>
         <br />
-        <Button> SUIVANT </Button>
-        <Button> PRECEDENT </Button>
-
       </div>
     </>
   )
